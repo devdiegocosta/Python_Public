@@ -1,0 +1,58 @@
+# script para conectar ao banco de dados, executar uma stored procedure e gerar um arquivo de log implementado com POO
+import pyodbc
+import logging
+
+# Classe de conexão com banco de dados sql
+class ConnSQL:
+    def __init__(self, driver, server, port, database, uid, pwd):
+        self._driver = driver
+        self.__server = server
+        self.__port = port
+        self.__database = database
+        self.__uid = uid
+        self.__pwd = pwd
+        self.__connstr = f'DRIVER={self._driver};SERVER={self.__server};PORT={self.__port};DATABASE={self.__database};UID={self.__uid};PWD={self.__pwd}'
+
+    ''' 
+    # Exemplo de métodos getter e setter
+    @property
+    def driver(self):
+        return self._driver
+    
+    @driver.setter
+    def driver(self, driver):
+        self._driver = driver
+    '''
+    
+    # função para conectar ao banco de dados, executar uma stored procedure e gerar um arquivo de log
+    def execProcWithLog(self, command, logpath):
+        logging.basicConfig(filename=logpath, filemode='a', level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+        try:
+            with pyodbc.connect(self.__connstr) as conn:
+                with conn.cursor() as proc:
+                    try:
+                        proc.execute(command)
+                        logging.info('Command(s) completed sucessfully')
+                    finally:
+                        proc.close()
+                        conn.close()
+        except Exception as error:
+            logging.error(f'Exception: {error}')
+
+'''
+# Exemplo de utilização
+
+# Instancia do objeto ConnSQL
+conn = ConnSQL('{ODBC Driver 11 for SQL Server}', 
+                      'localhost', 
+                      '1433', 
+                      'MY_DATABASE',
+                      'MY_LOGIN',
+                      'my_PASSWORD')
+
+# executando a função
+conn.execProcWithLog('EXEC [MY_SCHEMA].[MY_STORED_PROCEDURE];','C:/Scripts/example.log')
+'''
+
+
+
