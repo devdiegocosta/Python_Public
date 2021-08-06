@@ -11,9 +11,13 @@ pwd = 'PASSWORD'
 command = 'EXEC [STORED_PROCEDURE];'
 logpath = 'C:/Scripts/execProc.log'
 
-connstr = f'DRIVER={driver};SERVER={server};PORT={port};DATABASE={database};UID={uid};PWD={pwd}'
+connstr = f'DRIVER={driver};SERVER={server};PORT={port};'
+          f'DATABASE={database};UID={uid};PWD={pwd}'
 
-logging.basicConfig(filename=logpath, filemode='a', level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+logging.basicConfig(filename=logpath, filemode='a', 
+                    level=logging.DEBUG, 
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', 
+                    datefmt='%Y-%m-%d %H:%M:%S')
 
 try:
     with pyodbc.connect(connstr) as conn:
