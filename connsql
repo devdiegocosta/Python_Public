@@ -1,4 +1,4 @@
-# script para conectar ao banco de dados, executar uma stored procedure e gerar um arquivo de log implementado com POO
+"""Script para conectar ao banco de dados, executar uma stored procedure e gerar um arquivo de log implementado com POO"""
 import pyodbc
 import logging
 
