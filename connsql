@@ -15,7 +15,7 @@ import pyodbc
 import logging
 
 class ConnSQL:
-    def __init__(self, driver, server, port, database, uid, pwd):
+    def __init__(self, driver: str, server: str, port: str, database: str, uid: str, pwd: str):
         self._driver = driver
         self.__server = server
         self.__port = port
