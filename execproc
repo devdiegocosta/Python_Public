@@ -1,4 +1,4 @@
-# script para conectar ao banco de dados, executar uma stored procedure e gerar um arquivo de log
+"""Script para conectar ao banco de dados, executar uma stored procedure e gerar um arquivo de log"""
 import pyodbc
 import logging
 
