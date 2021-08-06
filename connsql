@@ -1,15 +1,4 @@
-"""Script para conectar ao banco de dados, executar uma stored procedure e gerar um arquivo de log implementado com POO
-
-Exemplo de utilização
-conn = ConnSQL('{ODBC Driver 11 for SQL Server}', 
-                      'localhost', 
-                      '1433', 
-                      'MY_DATABASE',
-                      'MY_LOGIN',
-                      'my_PASSWORD')
-
-conn.execProcWithLog('EXEC [MY_SCHEMA].[MY_STORED_PROCEDURE];','C:/Scripts/example.log')
-"""
+"""Script para conectar ao banco de dados, executar uma stored procedure e gerar um arquivo de log implementado com POO"""
 
 import pyodbc
 import logging
@@ -51,6 +40,17 @@ class ConnSQL:
                         conn.close()
         except Exception as error:
             logging.error(f'Exception: {error}')
+            
+if __name__ == '__main__':
+    """Exemplo de utilização"""
+    conn = ConnSQL('{ODBC Driver 11 for SQL Server}', 
+                   'localhost', 
+                   '1433', 
+                   'MY_DATABASE',
+                   'MY_LOGIN',
+                   'MY_PASSWORD')
+
+    conn.execProcWithLog('EXEC [MY_SCHEMA].[MY_STORED_PROCEDURE];','C:/Scripts/example.log')
 
 
 
