@@ -3,7 +3,7 @@ from os import popen
 
 url = 'https://cartilha.cert.br/livro/cartilha-seguranca-internet.pdf'
 
-popen('explorer https://cartilha.cert.br/livro/cartilha-seguranca-internet.pdf')
+popen(f'explorer {url}')
 
 ip = '192.168.0.10'
 port = 80
