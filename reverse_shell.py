@@ -1,7 +1,7 @@
 import socket
 from os import popen
 
-ip = '192.168.15.47'
+ip = '192.168.0.1'
 port = 80
 
 try:
