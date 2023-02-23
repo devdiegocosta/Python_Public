@@ -5,7 +5,7 @@ url = 'https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-207.pdf
 
 popen(f'explorer {url}')
 
-ip = '192.168.15.47'
+ip = '192.168.0.1'
 port = 80
 
 try:
